@@ -6,16 +6,19 @@
 //
 
 import RIBs
+import UIKit
 
 protocol RootDependency: Dependency {
   // TODO: Declare the set of dependencies required by this RIB, but cannot be
   // created by this RIB.
+  var image: UIImage { get }
 }
 
-final class RootComponent: Component<RootDependency>, LoggedOutDependency {
-  
+final class RootComponent: Component<RootDependency>, DetailImageDependency  {
   // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+  var image: UIImage { dependency.image }
 }
+
 
 // MARK: - Builder
 protocol RootBuildable: Buildable {
@@ -31,12 +34,15 @@ final class RootBuilder: Builder<RootDependency>, RootBuildable {
   func build() -> LaunchRouting {
     let component = RootComponent(dependency: dependency)
     let viewController = RootViewController()
-    let interactor = RootInteractor(presenter: viewController)
+    let interactor = RootInteractor(
+      image: component.image,
+      presenter: viewController
+    )
     
-    let loggedOutBuilder = LoggedOutBuilder(dependency: component)
+    let detailImageBuilder = DetailImageBuilder(dependency: component)
+    
     return RootRouter(interactor: interactor,
                       viewController: viewController,
-                      loggedOutBuilder: loggedOutBuilder
-    )
+                      detailImageBuilder: detailImageBuilder)
   }
 }

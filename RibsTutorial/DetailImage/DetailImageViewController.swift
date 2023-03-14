@@ -1,5 +1,5 @@
 //
-//  RootViewController.swift
+//  DetailImageViewController.swift
 //  RibsTutorial
 //
 //  Created by 구본의 on 2023/03/14.
@@ -7,71 +7,76 @@
 
 import RIBs
 import RxSwift
+import RxRelay
 import UIKit
-import SnapKit
-import Then
-import RxGesture
 
-protocol RootPresentableListener: AnyObject {
+protocol DetailImagePresentableListener: AnyObject {
   // TODO: Declare properties and methods that the view controller can invoke to perform
   // business logic, such as signIn(). This protocol is implemented by the corresponding
   // interactor class.
   var viewModel: Observable<UIImage> { get }
 }
 
-final class RootViewController: UIViewController, RootPresentable, RootViewControllable {
+final class DetailImageViewController: UIViewController, DetailImagePresentable, DetailImageViewControllable {
   
-  // MARK: UI
+  
   private let imageView = UIImageView().then {
     $0.layer.masksToBounds = true
     $0.layer.borderWidth = 1
     $0.layer.borderColor = UIColor.blue.cgColor
   }
   
-  private let showDetailButton = UIButton(type: .system).then {
-    $0.setTitle("Cliked to Detail", for: .normal)
-    $0.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
-    $0.tintColor = .black
+  private let closeButton = UIButton(type: .system).then {
+    $0.setTitle("Close", for: .normal)
   }
   
-  // MARK: Property
-  weak var listener: RootPresentableListener?
+  
+  private let detachRelay: PublishRelay<Void> = .init()
+  lazy var detachObservable: Observable<Void> = detachRelay.asObservable()
+  
+  weak var listener: DetailImagePresentableListener?
   private let disposeBag = DisposeBag()
   
-  lazy var detailButtonClickedObservable: Observable<Void> = showDetailButton.rx.tap.asObservable()
+  
   
   // MARK: VC LifeCycle
   override func viewDidLoad() {
     super.viewDidLoad()
     self.setupViews()
+    self.setupGestures()
     self.bind(to: listener)
   }
   
   // MARK: Method
   private func setupViews() {
-    self.view.backgroundColor = .white
-    
+    self.view.backgroundColor = .brown
     self.view.addSubview(imageView)
-    self.view.addSubview(showDetailButton)
+    self.view.addSubview(closeButton)
     
     imageView.snp.makeConstraints { make in
-      make.size.equalTo(200)
       make.center.equalToSuperview()
+      make.size.equalTo(200)
     }
     
-    showDetailButton.snp.makeConstraints { make in
+    closeButton.snp.makeConstraints { make in
+      make.bottom.equalTo(view.safeAreaLayoutGuide)
       make.centerX.equalToSuperview()
-      make.top.equalTo(imageView.snp.bottom).offset(40)
     }
   }
   
-  private func bind(to listener: RootPresentableListener?) {
+  private func bind(to listener: DetailImagePresentableListener?) {
     listener?.viewModel
       .observe(on: MainScheduler.instance)
       .subscribe(onNext: { [weak self] image in
         guard let self else { return }
         self.imageView.image = image
       }).disposed(by: disposeBag)
+  }
+  
+  private func setupGestures() {
+    self.closeButton.rx.tap
+      .bind(to: detachRelay)
+      .disposed(by: disposeBag)
   }
   
 }

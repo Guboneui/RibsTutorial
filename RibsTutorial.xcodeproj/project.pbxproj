@@ -23,10 +23,10 @@
 		2C200ED129BF7B9300F0A49C /* RootBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C200ECD29BF7B9300F0A49C /* RootBuilder.swift */; };
 		2C200ED229BF7B9300F0A49C /* RootInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C200ECE29BF7B9300F0A49C /* RootInteractor.swift */; };
 		2C200ED429BF7BA400F0A49C /* AppComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C200ED329BF7BA400F0A49C /* AppComponent.swift */; };
-		2C9BF99E29BF9957008A77B2 /* LoggedOutRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9BF99A29BF9957008A77B2 /* LoggedOutRouter.swift */; };
-		2C9BF99F29BF9957008A77B2 /* LoggedOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9BF99B29BF9957008A77B2 /* LoggedOutViewController.swift */; };
-		2C9BF9A029BF9957008A77B2 /* LoggedOutBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9BF99C29BF9957008A77B2 /* LoggedOutBuilder.swift */; };
-		2C9BF9A129BF9957008A77B2 /* LoggedOutInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9BF99D29BF9957008A77B2 /* LoggedOutInteractor.swift */; };
+		2C955B4929BFFF6C00074744 /* DetailImageRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C955B4529BFFF6C00074744 /* DetailImageRouter.swift */; };
+		2C955B4A29BFFF6C00074744 /* DetailImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C955B4629BFFF6C00074744 /* DetailImageViewController.swift */; };
+		2C955B4B29BFFF6C00074744 /* DetailImageBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C955B4729BFFF6C00074744 /* DetailImageBuilder.swift */; };
+		2C955B4C29BFFF6C00074744 /* DetailImageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C955B4829BFFF6C00074744 /* DetailImageInteractor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,10 +41,10 @@
 		2C200ECD29BF7B9300F0A49C /* RootBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootBuilder.swift; sourceTree = "<group>"; };
 		2C200ECE29BF7B9300F0A49C /* RootInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootInteractor.swift; sourceTree = "<group>"; };
 		2C200ED329BF7BA400F0A49C /* AppComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppComponent.swift; sourceTree = "<group>"; };
-		2C9BF99A29BF9957008A77B2 /* LoggedOutRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedOutRouter.swift; sourceTree = "<group>"; };
-		2C9BF99B29BF9957008A77B2 /* LoggedOutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedOutViewController.swift; sourceTree = "<group>"; };
-		2C9BF99C29BF9957008A77B2 /* LoggedOutBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedOutBuilder.swift; sourceTree = "<group>"; };
-		2C9BF99D29BF9957008A77B2 /* LoggedOutInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedOutInteractor.swift; sourceTree = "<group>"; };
+		2C955B4529BFFF6C00074744 /* DetailImageRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageRouter.swift; sourceTree = "<group>"; };
+		2C955B4629BFFF6C00074744 /* DetailImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageViewController.swift; sourceTree = "<group>"; };
+		2C955B4729BFFF6C00074744 /* DetailImageBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageBuilder.swift; sourceTree = "<group>"; };
+		2C955B4829BFFF6C00074744 /* DetailImageInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageInteractor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +84,7 @@
 		2C200EA129BF76B600F0A49C /* RibsTutorial */ = {
 			isa = PBXGroup;
 			children = (
-				2C9BF99929BF9947008A77B2 /* LoggedOut */,
+				2C955B4429BFFF5600074744 /* DetailImage */,
 				2C200EC929BF7B7A00F0A49C /* AppStart */,
 				2C200ECA29BF7B8500F0A49C /* Root */,
 				2C200EAB29BF76B700F0A49C /* Assets.xcassets */,
@@ -115,15 +115,15 @@
 			path = Root;
 			sourceTree = "<group>";
 		};
-		2C9BF99929BF9947008A77B2 /* LoggedOut */ = {
+		2C955B4429BFFF5600074744 /* DetailImage */ = {
 			isa = PBXGroup;
 			children = (
-				2C9BF99A29BF9957008A77B2 /* LoggedOutRouter.swift */,
-				2C9BF99B29BF9957008A77B2 /* LoggedOutViewController.swift */,
-				2C9BF99C29BF9957008A77B2 /* LoggedOutBuilder.swift */,
-				2C9BF99D29BF9957008A77B2 /* LoggedOutInteractor.swift */,
+				2C955B4529BFFF6C00074744 /* DetailImageRouter.swift */,
+				2C955B4629BFFF6C00074744 /* DetailImageViewController.swift */,
+				2C955B4729BFFF6C00074744 /* DetailImageBuilder.swift */,
+				2C955B4829BFFF6C00074744 /* DetailImageInteractor.swift */,
 			);
-			path = LoggedOut;
+			path = DetailImage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,16 +212,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C9BF9A129BF9957008A77B2 /* LoggedOutInteractor.swift in Sources */,
+				2C955B4B29BFFF6C00074744 /* DetailImageBuilder.swift in Sources */,
 				2C200ED029BF7B9300F0A49C /* RootViewController.swift in Sources */,
+				2C955B4929BFFF6C00074744 /* DetailImageRouter.swift in Sources */,
 				2C200ED429BF7BA400F0A49C /* AppComponent.swift in Sources */,
-				2C9BF9A029BF9957008A77B2 /* LoggedOutBuilder.swift in Sources */,
+				2C955B4A29BFFF6C00074744 /* DetailImageViewController.swift in Sources */,
 				2C200ECF29BF7B9300F0A49C /* RootRouter.swift in Sources */,
-				2C9BF99E29BF9957008A77B2 /* LoggedOutRouter.swift in Sources */,
 				2C200ED229BF7B9300F0A49C /* RootInteractor.swift in Sources */,
+				2C955B4C29BFFF6C00074744 /* DetailImageInteractor.swift in Sources */,
 				2C200EA329BF76B600F0A49C /* AppDelegate.swift in Sources */,
 				2C200EA529BF76B600F0A49C /* SceneDelegate.swift in Sources */,
-				2C9BF99F29BF9957008A77B2 /* LoggedOutViewController.swift in Sources */,
 				2C200ED129BF7B9300F0A49C /* RootBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

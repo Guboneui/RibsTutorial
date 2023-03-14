@@ -6,8 +6,11 @@
 //
 
 import RIBs
+import UIKit
 
 class AppComponent: Component<EmptyDependency>, RootDependency {
+  var image: UIImage { UIImage(named: "carrot")! }
+  
   init() {
     super.init(dependency: EmptyComponent())
   }

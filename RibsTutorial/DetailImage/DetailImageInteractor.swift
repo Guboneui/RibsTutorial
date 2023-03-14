@@ -1,5 +1,5 @@
 //
-//  RootInteractor.swift
+//  DetailImageInteractor.swift
 //  RibsTutorial
 //
 //  Created by 구본의 on 2023/03/14.
@@ -7,50 +7,50 @@
 
 import RIBs
 import RxSwift
-import UIKit
 import RxRelay
+import UIKit
 
-protocol RootRouting: ViewableRouting {
+protocol DetailImageRouting: ViewableRouting {
   // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
-  func attachDetailView()
-  func detachDetailView()
 }
 
-protocol RootPresentable: Presentable {
-  var listener: RootPresentableListener? { get set }
-  var detailButtonClickedObservable: Observable<Void> { get }
+protocol DetailImagePresentable: Presentable {
+  var listener: DetailImagePresentableListener? { get set }
+  var detachObservable: Observable<Void> { get }
   // TODO: Declare methods the interactor can invoke the presenter to present data.
 }
 
-protocol RootListener: AnyObject {
+protocol DetailImageListener: AnyObject {
   // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+  func detachDetailImageRIB()
+  func attachDetailImageRIB()
 }
 
-final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteractable, RootPresentableListener {
+final class DetailImageInteractor:
+  PresentableInteractor<DetailImagePresentable>,
+  DetailImageInteractable,
+  DetailImagePresentableListener
+{
   
+  weak var router: DetailImageRouting?
+  weak var listener: DetailImageListener?
   
-  weak var router: RootRouting?
-  weak var listener: RootListener?
-  
-  // MARK: Property
   private let disposeBag = DisposeBag()
   private let viewModelRelay: BehaviorRelay<UIImage>
   private(set) lazy var viewModel: Observable<UIImage> = viewModelRelay.asObservable()
   
-  
-  
   // TODO: Add additional dependencies to constructor. Do not perform any logic
   // in constructor.
-  init(image: UIImage, presenter: RootPresentable) {
-    self.viewModelRelay = .init(value: image)
+  init(image: UIImage, presenter: DetailImagePresentable) {
+    viewModelRelay = .init(value: image)
     super.init(presenter: presenter)
     presenter.listener = self
   }
   
   override func didBecomeActive() {
     super.didBecomeActive()
-    // TODO: Implement business logic here.
     self.bindPresenter()
+    // TODO: Implement business logic here.
   }
   
   override func willResignActive() {
@@ -58,23 +58,11 @@ final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteract
     // TODO: Pause any business logic.
   }
   
-  
-  // MARK: binding
   private func bindPresenter() {
-    presenter.detailButtonClickedObservable
-      .bind { [weak self] in
+    presenter.detachObservable
+      .bind { [weak self] _ in
         guard let self else { return }
-        self.router?.attachDetailView()
+        self.listener?.detachDetailImageRIB()
       }.disposed(by: disposeBag)
   }
-  
-  func attachDetailImageRIB() {
-    router?.attachDetailView()
-  }
-  
-  func detachDetailImageRIB() {
-    router?.detachDetailView()
-  }
-  
-  
 }
